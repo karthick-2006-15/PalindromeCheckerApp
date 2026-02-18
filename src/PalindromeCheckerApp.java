@@ -1,33 +1,30 @@
-import java.util.Scanner;
+/*
+ * Use Case 1: Application Entry & Welcome Message
+ * Palindrome Checker App
+ * Version: 1.0
+ */
 
-public class PalindromeCheckerApp {
+public class UseCase1PalindromeCheckerApp {
 
+    // Entry point of the Java application
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("--- Palindrome Checker App ---");
-        System.out.print("Enter a word or phrase: ");
-        String input = scanner.nextLine();
+        // Displaying Welcome Message
+        System.out.println("=====================================");
+        System.out.println("     Welcome to Palindrome Checker App");
+        System.out.println("=====================================");
 
-        if (isPalindrome(input)) {
-            System.out.println("\"" + input + "\" is a palindrome!");
-        } else {
-            System.out.println("\"" + input + "\" is not a palindrome.");
-        }
+        // Displaying Application Details
+        System.out.println("Application Name : Palindrome Checker App");
+        System.out.println("Version          : 1.0");
+        System.out.println("Author           : System");
+        System.out.println("-------------------------------------");
 
-        scanner.close();
-    }
+        System.out.println("This application checks whether a given string is a palindrome.");
+        System.out.println("Stay tuned for palindrome validation in the next use case!");
 
-    public static boolean isPalindrome(String text) {
-        if (text == null) {
-            return false;
-        }
-
-        String cleaned = text.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-
-        // 2. Reverse the string and compare
-        String reversed = new StringBuilder(cleaned).reverse().toString();
-
-        return cleaned.equals(reversed);
+        System.out.println("=====================================");
+        System.out.println("Application Started Successfully.");
+        System.out.println("=====================================");
     }
 }
