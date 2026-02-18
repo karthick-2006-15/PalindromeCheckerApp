@@ -1,30 +1,34 @@
 /*
- * Use Case 1: Application Entry & Welcome Message
+ * Use Case 2: Print a Hardcoded Palindrome Result
  * Palindrome Checker App
  * Version: 1.0
  */
 
-public class UseCase1PalindromeCheckerApp {
+class UseCase2PalindromeCheckerApp {
 
-    // Entry point of the Java application
-    public static void main(String[] args) {
+    static void main() {
 
-        // Displaying Welcome Message
-        System.out.println("=====================================");
-        System.out.println("     Welcome to Palindrome Checker App");
-        System.out.println("=====================================");
+        // Hardcoded string (String Literal)
+        String word = "madam";
 
-        // Displaying Application Details
-        System.out.println("Application Name : Palindrome Checker App");
-        System.out.println("Version          : 1.0");
-        System.out.println("Author           : System");
-        System.out.println("-------------------------------------");
+        // Variable to store reversed string
+        StringBuilder reversed = new StringBuilder();
 
-        System.out.println("This application checks whether a given string is a palindrome.");
-        System.out.println("Stay tuned for palindrome validation in the next use case!");
+        // Logic to reverse the string
+        for (int i = word.length() - 1; i >= 0; i--) {
+            reversed.append(word.charAt(i));
+        }
 
-        System.out.println("=====================================");
-        System.out.println("Application Started Successfully.");
-        System.out.println("=====================================");
+        // Display original word
+        System.out.println("Given Word: " + word);
+
+        // Conditional check using if-else
+        if (word.contentEquals(reversed)) {
+            System.out.println("Result: The given word is a Palindrome.");
+        } else {
+            System.out.println("Result: The given word is NOT a Palindrome.");
+        }
+
+        System.out.println("Program executed successfully.");
     }
 }
