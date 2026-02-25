@@ -1,26 +1,26 @@
-class UseCase4PalindromeCheckerApp {
+import java.util.Stack;
+
+class UseCase5PalindromeCheckerApp {
 
     static void main() {
 
-        String original = "radar";
-        char[] characters = original.toCharArray();
+        String original = "madam";
+        Stack<Character> stack = new Stack<>();
 
-        int start = 0;
-        int end = characters.length - 1;
-        boolean isPalindrome = true;
+        for (int i = 0; i < original.length(); i++) {
+            stack.push(original.charAt(i));
+        }
 
-        while (start < end) {
-            if (characters[start] != characters[end]) {
-                isPalindrome = false;
-                break;
-            }
-            start++;
-            end--;
+        StringBuilder reversed = new StringBuilder();
+
+        while (!stack.isEmpty()) {
+            reversed.append(stack.pop());
         }
 
         System.out.println("Original String : " + original);
+        System.out.println("Reversed String : " + reversed);
 
-        if (isPalindrome) {
+        if (original.contentEquals(reversed)) {
             System.out.println("Result: The given string is a Palindrome.");
         } else {
             System.out.println("Result: The given string is NOT a Palindrome.");
