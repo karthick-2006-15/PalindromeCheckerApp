@@ -1,38 +1,85 @@
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.Scanner;
 
-class UseCase7PalindromeCheckerApp {
+public class UseCase8PalindromeCheckerApp {
 
-    static void main() {
+    static class Node {
+        char data;
+        Node next;
 
-        String original = "madam";
+        Node(char data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
 
-        Deque<Character> deque = new LinkedList<>();
+    public static boolean isPalindrome(String input) {
 
-        for (int i = 0; i < original.length(); i++) {
-            deque.addLast(original.charAt(i));
+        if (input == null || input.length() == 0) {
+            return true;
         }
 
-        boolean isPalindrome = true;
+        Node head = new Node(input.charAt(0));
+        Node current = head;
 
-        while (deque.size() > 1) {
-            char front = deque.removeFirst();
-            char rear = deque.removeLast();
+        for (int i = 1; i < input.length(); i++) {
+            current.next = new Node(input.charAt(i));
+            current = current.next;
+        }
 
-            if (front != rear) {
-                isPalindrome = false;
-                break;
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        Node secondHalf = reverseList(slow);
+
+        Node firstHalf = head;
+        Node tempSecond = secondHalf;
+
+        while (tempSecond != null) {
+            if (firstHalf.data != tempSecond.data) {
+                return false;
             }
+            firstHalf = firstHalf.next;
+            tempSecond = tempSecond.next;
         }
 
-        System.out.println("Original String : " + original);
+        return true;
+    }
 
-        if (isPalindrome) {
-            System.out.println("Result: The given string is a Palindrome.");
+    public static Node reverseList(Node head) {
+        Node prev = null;
+        Node current = head;
+        Node next = null;
+
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+
+        return prev;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        boolean result = isPalindrome(input);
+
+        if (result) {
+            System.out.println("The given string is a palindrome.");
         } else {
-            System.out.println("Result: The given string is NOT a Palindrome.");
+            System.out.println("The given string is not a palindrome.");
         }
 
-        System.out.println("Program executed successfully.");
+        scanner.close();
     }
 }
