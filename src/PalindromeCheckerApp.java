@@ -1,38 +1,35 @@
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.Scanner;
 
-class UseCase7PalindromeCheckerApp {
+public class UseCase9PalindromeCheckerApp {
 
-    static void main() {
+    public static boolean isPalindrome(String input, int start, int end) {
 
-        String original = "madam";
-
-        Deque<Character> deque = new LinkedList<>();
-
-        for (int i = 0; i < original.length(); i++) {
-            deque.addLast(original.charAt(i));
+        if (start >= end) {
+            return true;
         }
 
-        boolean isPalindrome = true;
-
-        while (deque.size() > 1) {
-            char front = deque.removeFirst();
-            char rear = deque.removeLast();
-
-            if (front != rear) {
-                isPalindrome = false;
-                break;
-            }
+        if (input.charAt(start) != input.charAt(end)) {
+            return false;
         }
 
-        System.out.println("Original String : " + original);
+        return isPalindrome(input, start + 1, end - 1);
+    }
 
-        if (isPalindrome) {
-            System.out.println("Result: The given string is a Palindrome.");
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        boolean result = isPalindrome(input, 0, input.length() - 1);
+
+        if (result) {
+            System.out.println("The given string is a palindrome.");
         } else {
-            System.out.println("Result: The given string is NOT a Palindrome.");
+            System.out.println("The given string is not a palindrome.");
         }
 
-        System.out.println("Program executed successfully.");
+        scanner.close();
     }
 }
