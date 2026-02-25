@@ -1,26 +1,34 @@
 import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
 
-class UseCase5PalindromeCheckerApp {
+class UseCase6PalindromeCheckerApp {
 
     static void main() {
 
-        String original = "madam";
+        String original = "level";
+
         Stack<Character> stack = new Stack<>();
+        Queue<Character> queue = new LinkedList<>();
 
         for (int i = 0; i < original.length(); i++) {
-            stack.push(original.charAt(i));
+            char ch = original.charAt(i);
+            stack.push(ch);
+            queue.add(ch);
         }
 
-        StringBuilder reversed = new StringBuilder();
+        boolean isPalindrome = true;
 
         while (!stack.isEmpty()) {
-            reversed.append(stack.pop());
+            if (!stack.pop().equals(queue.remove())) {
+                isPalindrome = false;
+                break;
+            }
         }
 
         System.out.println("Original String : " + original);
-        System.out.println("Reversed String : " + reversed);
 
-        if (original.contentEquals(reversed)) {
+        if (isPalindrome) {
             System.out.println("Result: The given string is a Palindrome.");
         } else {
             System.out.println("Result: The given string is NOT a Palindrome.");
